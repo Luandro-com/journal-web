@@ -1,0 +1,7 @@
+query {
+  editions {
+    id
+    title
+    body
+  }
+}

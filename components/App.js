@@ -4,6 +4,7 @@ import { Query } from 'react-apollo'
 import * as gtag from '../lib/gtag'
 import USER from '../queries/user.gql'
 import Header from './Header'
+import Loading from '../components/Loading'
 Router.events.on('routeChangeComplete', url => gtag.pageview(url))
 
 // Context not working, makes sense instead of querying again for user
@@ -14,7 +15,7 @@ export const UserData = React.createContext({
 export default ({ children }) => (
   <Query query={USER}>
     {({ loading: loadingUser, error: errorUser, data: dataUser, client }) => {
-      if (loadingUser) return <h1>Loading....</h1>
+      if (loadingUser) return <Loading />
       // if (errorUser) return <h1>Error</h1>
       if (dataUser || errorUser) {
         const userData = dataUser ? dataUser.user : null

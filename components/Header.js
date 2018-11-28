@@ -8,27 +8,60 @@ const Header = ({ router: { pathname }, user }) => (
     { client => (
       <header>
         <Link prefetch href='/'>
-          <a className={pathname === '/' ? 'is-active' : ''}>Capa</a>
+          <h1>Periódico</h1>
         </Link>
-        <Link prefetch href='/about'>
-          <a className={pathname === '/about' ? 'is-active' : ''}>Sobre</a>
-        </Link>
-        <Link prefetch href='/authors'>
-          <a className={pathname === '/authors' ? 'is-active' : ''}>Autores</a>
-        </Link>
-        <Link prefetch href='/editions'>
-          <a className={pathname === '/editions' ? 'is-active' : ''}>Edições</a>
-        </Link>
-        {!user &&
-          <Link prefetch href='/login'>
-            <a className={pathname === '/login' ? 'is-active' : ''}>Login</a>
+        <div className="user">
+          {!user &&
+            <Link prefetch href='/login'>
+              <a className={pathname === '/login' ? 'is-active' : ''}>Login</a>
+            </Link>
+          }
+          {user && <a onClick={() => logout(client)} href=''>Logout</a>}
+        </div>
+        <hr />
+        <nav>
+          <Link prefetch href='/'>
+            <a className={pathname === '/' ? 'is-active' : ''}>Capa</a>
           </Link>
-        }
-        {user && <a onClick={() => logout(client)} href=''>Logout</a>}
+          <Link prefetch href='/editions'>
+            <a className={pathname === '/editions' ? 'is-active' : ''}>Edições</a>
+          </Link>
+          <Link prefetch href='/about'>
+            <a className={pathname === '/about' ? 'is-active' : ''}>Sobre</a>
+          </Link>
+          <Link prefetch href='/submit'>
+            <a className={pathname === '/submit' ? 'is-active' : ''}>Submissões</a>
+          </Link>
+        </nav>
         
         <style jsx>{`
           header {
-            margin-bottom: 25px;
+            width: 100%;
+            text-align: center;
+            margin: 0 auto;
+            margin-bottom: 55px;
+          }
+          header h1 {
+            cursor: pointer;
+          }
+          hr {
+            max-width: 948px;
+            color: green;
+          }
+          .user {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+
+          }
+          nav {
+            margin: 0 auto;
+            width: 100%;
+            max-width: 600px;
+            display: flex;
+            flex-flow: row no-wrap;
+            align-items: center;
+            justify-content: space-around;
           }
           a {
             font-size: 14px;

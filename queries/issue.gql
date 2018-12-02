@@ -1,0 +1,7 @@
+query($issueKey: String!) {
+  issue(issueKey: $issueKey) {
+    id
+    title
+    body
+  }
+}

@@ -1,21 +1,21 @@
 import React, { Component } from 'react'
 import { Query, Mutation } from 'react-apollo'
 import App from '../components/App'
-// import EDITION from '../queries/editions.gql'
+// import ISSUE from '../queries/issues.gql'
 import Loading from '../components/Loading'
 
-class Edition extends Component {
+class ISSUE extends Component {
     render () {
       return (
         <App>
-          {/* <Query query={EDITION}>
+          {/* <Query query={ISSUE}>
             {({ data, loading, error }) => {
               if (loading) return <Loading />
               if (error) return <h2>error</h2>
               if (data) {
                 return ( */}
                   <div>
-                    <h1>Edition</h1>
+                    <h1>ISSUE</h1>
                   </div>
                 {/* )
               }
@@ -26,4 +26,4 @@ class Edition extends Component {
     }
 }
 
-export default Edition
+export default ISSUE

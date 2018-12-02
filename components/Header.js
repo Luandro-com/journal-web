@@ -23,8 +23,8 @@ const Header = ({ router: { pathname }, user }) => (
           <Link prefetch href='/'>
             <a className={pathname === '/' ? 'is-active' : ''}>Capa</a>
           </Link>
-          <Link prefetch href='/editions'>
-            <a className={pathname === '/editions' ? 'is-active' : ''}>Edições</a>
+          <Link prefetch href='/issues'>
+            <a className={pathname === '/issues' ? 'is-active' : ''}>Edições</a>
           </Link>
           <Link prefetch href='/about'>
             <a className={pathname === '/about' ? 'is-active' : ''}>Sobre</a>

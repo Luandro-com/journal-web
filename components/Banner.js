@@ -2,14 +2,14 @@ import Link from 'next/link'
 import { withRouter } from 'next/router'
 import Carousel from 'nuka-carousel'
 
-const Banner = ({ router: { pathname }, editions }) => (
+const Banner = ({ router: { pathname }, issues }) => (
   <article>
     <Carousel
       autoplay={true}
       renderBottomRightControls={({ currentSlide, goToSlide }) => {
         return (
           <div className="slideControls">
-            {editions.map((e, key) => (
+            {issues.map((e, key) => (
               <div
                 onClick={() => goToSlide(key)}
                 key={e.id}
@@ -23,7 +23,7 @@ const Banner = ({ router: { pathname }, editions }) => (
       renderCenterRightControls={({ nextSlide }) => null}
       renderBottomCenterControls={({ currentSlide }) => null}
     >
-      {editions.map(e => <div key={e.id}><Link href={`/edition?key=${e.key}`}>
+      {issues.map(e => <div key={e.id}><Link href={`/issue?key=${e.key}`}>
         <div className="slide">
           <h1>{e.title}</h1>
         </div>

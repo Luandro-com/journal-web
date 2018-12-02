@@ -2,20 +2,20 @@ import React, { Component } from 'react'
 import { withRouter } from 'next/router'
 import { Query, Mutation } from 'react-apollo'
 import App from '../components/App'
-import EDITION from '../queries/edition.gql'
+import ISSUE from '../queries/issue.gql'
 import Loading from '../components/Loading'
 
-class Edition extends Component {
+class Issue extends Component {
     render () {
       const { router: { query: { key } } } = this.props
       return (
         <App>
-          <Query query={EDITION} variables={{editionKey: key}}>
+          <Query query={ISSUE} variables={{issueKey: key}}>
             {({ data, loading, error }) => {
               if (loading) return <Loading />
               if (error) return <h2>error</h2>
-              if (data && data.edition) {
-                const { body, id, title } = data.edition
+              if (data && data.issue) {
+                const { body, id, title } = data.issue
                 return (
                   <div>
                     <h1>{title}</h1>
@@ -30,4 +30,4 @@ class Edition extends Component {
     }
 }
 
-export default withRouter(Edition)
+export default withRouter(Issue)

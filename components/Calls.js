@@ -1,9 +1,9 @@
 import Link from 'next/link'
 
-const Calls = ({ editions }) => (
+const Calls = ({ issues }) => (
   <article>
     <h1>Chamadas</h1>
-    {console.log(editions)}
+    {console.log(issues)}
     <style jsx>{`
       .slideControls {
         display: flex;

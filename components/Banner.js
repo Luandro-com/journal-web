@@ -11,7 +11,7 @@ const Banner = ({ router: { pathname }, issues }) => (
       renderBottomRightControls={({ currentSlide, goToSlide }) => {
         return (
           <div className="slideControls">
-            {issues.map((e, key) => (
+            {issues && issues.map((e, key) => (
               <div
                 onClick={() => goToSlide(key)}
                 key={e.id}
@@ -25,10 +25,10 @@ const Banner = ({ router: { pathname }, issues }) => (
       renderCenterRightControls={({ nextSlide }) => null}
       renderBottomCenterControls={({ currentSlide }) => null}
     >
-      {issues.length === 0 &&  <div className="slide">
+      {(issues && issues.length === 0) && <div className="slide">
         <h1>Edições</h1>
       </div>}
-      {issues.map(e => <div key={e.id}><Link href={`/issue?key=${e.key}`}>
+      {issues && issues.map(e => <div key={e.id}><Link href={`/issue?key=${e.key}`}>
         <div className="slide">
           <h1>{e.title}</h1>
         </div>

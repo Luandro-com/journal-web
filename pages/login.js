@@ -24,7 +24,7 @@ class Login extends Component {
       <App>
         <AppData.Consumer>
           {({ user }) => {
-            if (user) {
+            if (user && user !== 'error' && user !== 'loading') {
               Router.push('/')
               return <h3>Redirecting...</h3>
             }

@@ -5,20 +5,19 @@ import { ApolloConsumer } from 'react-apollo'
 import Loading from './Loading'
 import colors from '../lib/colors'
 
-const Header = ({ router: { pathname }, user, content: { title, logo } }) => (
+const Header = ({ router: { pathname }, user, content }) => (
   <ApolloConsumer>
     { client => (
       <header>
         <Link prefetch href='/'>
           <div className="logo">
-            {title && <h1 className={logo ? 'hidden' : ''}>{title}</h1>}
-            {logo && <img src={logo} />}
+            {(content && content.title) && <h1 className={content.logo ? 'hidden' : ''}>{content.title}</h1>}
+            {(content && content.logo) && <img src={content.logo} />}
           </div>
         </Link>
         <div className="user">
           {(user === 'loading') && <Loading />}
-          {(user === 'error') && <h1>Erro!</h1>}
-          {!user &&
+          {(!user || user === 'error') &&
             <Link prefetch href='/login'>
               <a className={pathname === '/login' ? 'is-active' : ''}>Login</a>
             </Link>
@@ -60,10 +59,11 @@ const Header = ({ router: { pathname }, user, content: { title, logo } }) => (
             margin: 0 auto;
             padding: 10px 0;
             max-width: 60%;
+            height: 150px;
           }
           .logo img {
             max-width: 60%;
-            max-height: 150px;
+            height: 145px;
           }
           hr {
             max-width: 948px;

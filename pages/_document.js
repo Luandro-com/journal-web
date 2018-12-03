@@ -14,7 +14,7 @@ export default class extends Document {
       const cookies = req.headers.cookie
       if (typeof cookies === 'string') {
         const cookiesJSON = jsHttpCookie.parse(cookies)
-        token = cookiesJSON.ewe_token
+        token = cookiesJSON.periodico_token
       }
     }
     return { html, head, errorHtml, chunks, styles, token }

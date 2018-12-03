@@ -2,6 +2,7 @@ import React from 'react'
 import Router from 'next/router'
 import { Query } from 'react-apollo'
 import * as gtag from '../lib/gtag'
+import { logout } from '../lib/auth'
 import USER from '../queries/user.gql'
 import CONTENT from '../queries/content.gql'
 import Header from './Header'
@@ -19,12 +20,12 @@ export const AppData = React.createContext({
 export default ({ children }) => (
   <Query query={USER}>
     {({ loading: loadingUser, error: errorUser, data: dataUser, client }) => {
-      let userData = loadingUser ? 'loading' : dataUser.user
-      if (errorUser) { userData = 'error' }
+      let userData = loadingUser ? 'loading' : (errorUser ? 'error' : dataUser.user)
       return (
         <Query query={CONTENT}>
           {({ loading: loadingContent, error: errorContent, data: dataContent }) => {
-            let contentData = loadingContent ? 'loading' : dataContent.content
+            let contentData = dataContent.content
+            if (loadingContent) { contentData = 'loading'}
             if (errorContent) { contentData = 'error' }
             return (
               <main>

@@ -2,21 +2,28 @@ import Link from 'next/link'
 import { withRouter } from 'next/router'
 import { logout } from '../lib/auth'
 import { ApolloConsumer } from 'react-apollo'
+import Loading from './Loading'
+import colors from '../lib/colors'
 
-const Header = ({ router: { pathname }, user }) => (
+const Header = ({ router: { pathname }, user, content: { title, logo } }) => (
   <ApolloConsumer>
     { client => (
       <header>
         <Link prefetch href='/'>
-          <h1>Periódico</h1>
+          <div className="logo">
+            {title && <h1 className={logo ? 'hidden' : ''}>{title}</h1>}
+            {logo && <img src={logo} />}
+          </div>
         </Link>
         <div className="user">
+          {(user === 'loading') && <Loading />}
+          {(user === 'error') && <h1>Erro!</h1>}
           {!user &&
             <Link prefetch href='/login'>
               <a className={pathname === '/login' ? 'is-active' : ''}>Login</a>
             </Link>
           }
-          {user && <a onClick={() => logout(client)} href=''>Logout</a>}
+          {(user && user !== 'loading' && user !== 'error') && <a onClick={() => logout(client)} href=''>Logout</a>}
         </div>
         <hr />
         <nav>
@@ -44,9 +51,23 @@ const Header = ({ router: { pathname }, user }) => (
           header h1 {
             cursor: pointer;
           }
+          .hidden {
+            visibility: hidden;
+            margin-top: -100px;
+          }
+          .logo {
+            text-align: center;
+            margin: 0 auto;
+            padding: 10px 0;
+            max-width: 60%;
+          }
+          .logo img {
+            max-width: 60%;
+            max-height: 150px;
+          }
           hr {
             max-width: 948px;
-            color: green;
+            color: ${colors.color3};
           }
           .user {
             position: absolute;

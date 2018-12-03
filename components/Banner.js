@@ -1,9 +1,11 @@
 import Link from 'next/link'
 import { withRouter } from 'next/router'
 import Carousel from 'nuka-carousel'
+import colors from '../lib/colors'
 
 const Banner = ({ router: { pathname }, issues }) => (
   <article>
+    <h1>Últimas edições</h1>
     <Carousel
       autoplay={true}
       renderBottomRightControls={({ currentSlide, goToSlide }) => {
@@ -23,6 +25,9 @@ const Banner = ({ router: { pathname }, issues }) => (
       renderCenterRightControls={({ nextSlide }) => null}
       renderBottomCenterControls={({ currentSlide }) => null}
     >
+      {issues.length === 0 &&  <div className="slide">
+        <h1>Edições</h1>
+      </div>}
       {issues.map(e => <div key={e.id}><Link href={`/issue?key=${e.key}`}>
         <div className="slide">
           <h1>{e.title}</h1>
@@ -42,12 +47,12 @@ const Banner = ({ router: { pathname }, issues }) => (
         bottom: -20px;
         width: 15px;
         height: 15px;
-        border: 1px solid green;
+        border: 1px solid ${colors.color4};
         margin: 0 2.5px;
         cursor: pointer;
       }
       .selected {
-        background: green;
+        background: ${colors.color4};
       }
       .slide {
         width: 100%;

@@ -3,7 +3,6 @@ import Link from 'next/link'
 const Calls = ({ issues }) => (
   <article>
     <h1>Chamadas</h1>
-    {console.log(issues)}
     <style jsx>{`
       .slideControls {
         display: flex;

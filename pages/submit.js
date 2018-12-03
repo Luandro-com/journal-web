@@ -3,10 +3,10 @@ import Router from 'next/router'
 import { Mutation } from "react-apollo"
 import LOGIN from '../queries/login.gql'
 import { setToken, checkToken } from '../lib/auth'
-import App, { UserData } from '../components/App'
+import App, { AppData } from '../components/App'
 
 class Login extends Component {
-  static contextType = UserData 
+  static contextType = AppData 
   state = {
     email: 'reader@example.com',
     password: 'nooneknows'
@@ -22,7 +22,7 @@ class Login extends Component {
     const { email, password } = this.state
     return (
       <App>
-        <UserData.Consumer>
+        <AppData.Consumer>
           {({ user }) => {
             if (user) {
               Router.push('/')
@@ -70,7 +70,7 @@ class Login extends Component {
               </Mutation>
             )
           }}
-        </UserData.Consumer>
+        </AppData.Consumer>
       </App>
     )
   }

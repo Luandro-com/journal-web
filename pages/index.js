@@ -13,16 +13,13 @@ class Home extends Component {
       <App>
         <Query query={ISSUES}>
           {({ data, loading, error }) => {
-            if (loading) return <Loading />
-            if (error) return <h2>error</h2>
-            if (data) {
-              return (
-                <div>
-                  <Banner issues={data.issues.filter(e => (e.published && e.publishedCall) )} />
-                  <Calls issues={data.issues.filter(e => (e.publishedCall && !e.published) )} />
-                </div>
-              )
-            }
+            const issues = loading ? [] : data.issues
+            return (
+              <div>
+                <Banner issues={issues.filter(e => (e.published && e.publishedCall) )} />
+                <Calls issues={issues.filter(e => (e.publishedCall && !e.published) )} />
+              </div>
+            )
           }}
         </Query>
       </App>

@@ -21,7 +21,7 @@ class Archive extends Component {
                     <div key={issue.id} className="container">
                       <div className="imageContainer" style={{ backgroundImage: `url(${issue.image})`}} />
                       <div className="info">
-                        <Link href={issue.id}>
+                        <Link href={`/issue?key=${issue.key}`}>
                           <a>
                             <h3>v. {issue.volume} n. {issue.number} ({issue.year})</h3>
                           </a>

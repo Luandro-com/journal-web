@@ -1,32 +1,52 @@
 import Link from 'next/link'
+import colors from '../lib/colors'
 
 const Calls = ({ issues }) => (
   <article>
     <h1>Chamadas</h1>
+    {issues.map(issue => (
+      <Link href={`/issue?key=${issue.key}`} key={issue.id}>
+        <div className="item">
+          <div className="square" />
+          <div className="due">
+            <h4>prazo</h4>
+            <h5>{new Date(issue.endCall).toLocaleDateString()}</h5>
+          </div>
+          <h3>{issue.title}</h3>
+        </div>
+      </Link>
+    ))}
     <style jsx>{`
-      .slideControls {
+      .item {
         display: flex;
-        flex-flow: row no-wrap;
+        flex-flow: row nowrap;
+        justify-content: space-between;
+        align-items: center
       }
-      .slideControl {
-        position: relative;
-        bottom: -20px;
-        width: 15px;
-        height: 15px;
-        border: 1px solid green;
-        margin: 0 2.5px;
+      .square {
+        cursor: pointer;
+        height: 25px;
+        width: 25px;
+        background: ${colors.color3};
+      }
+      h3 {
         cursor: pointer;
       }
-      .selected {
-        background: green;
+      .due {
+        display: flex;
+        flex-flow: column;
+        align-items: center;
       }
-      .slide {
-        width: 100%;
-        height: 350px;
-        background: rgba(0,0,0,0.1);
+      .due h4 {
+        color: ${colors.color5};
+        font-size: 1.2em;
+        margin: 0 auto;
+        text-transform: uppercase;
       }
-      .slide h1 {
-        padding: 25px 35px;
+      .due h5 {
+        font-size: 0.7em;
+        margin: 0 auto;
+        letter-spacing: 0.1px;
       }
     `}</style>
   </article>

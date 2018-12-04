@@ -33,6 +33,7 @@ export default ({ children }) => (
                 <AppData.Provider value={{ user: userData, content: contentData }}>
                   {children}
                 </AppData.Provider>
+                <div className="footer"></div>
                 <style jsx global>{`
                   * {
                     font-family: Menlo, Monaco, 'Lucida Console', 'Liberation Mono',
@@ -68,6 +69,10 @@ export default ({ children }) => (
                   }
                   button:focus {
                     outline: none;
+                  }
+                  .footer {
+                    padding-top: 80px;
+                    width: 100%;
                   }
                 `}</style>
               </main>

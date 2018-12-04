@@ -34,7 +34,8 @@
     "react-apollo": "^2.1.11",
     "react-dom": "^16.6.1",
     "react-loader-spinner": "^2.2.0",
-    "react-loading": "^2.0.3"
+    "react-loading": "^2.0.3",
+    "react-pdf": "^4.0.0"
   },
   "author": "",
   "license": "ISC"

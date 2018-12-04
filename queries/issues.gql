@@ -6,5 +6,9 @@ query {
     body
     published
     publishedCall
+    image
+    number
+    volume
+    year
   }
 }

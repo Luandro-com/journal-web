@@ -29,8 +29,8 @@ const Header = ({ router: { pathname }, user, content }) => (
           <Link prefetch href='/'>
             <a className={pathname === '/' ? 'is-active' : ''}>Capa</a>
           </Link>
-          <Link prefetch href='/issues'>
-            <a className={pathname === '/issues' ? 'is-active' : ''}>Edições</a>
+          <Link prefetch href='/archive'>
+            <a className={pathname === '/archive' ? 'is-active' : ''}>Edições</a>
           </Link>
           <Link prefetch href='/about'>
             <a className={pathname === '/about' ? 'is-active' : ''}>Sobre</a>
@@ -62,8 +62,8 @@ const Header = ({ router: { pathname }, user, content }) => (
             height: 150px;
           }
           .logo img {
-            max-width: 60%;
-            height: 145px;
+            max-width: 70%;
+            max-height: 100%;
           }
           hr {
             max-width: 948px;

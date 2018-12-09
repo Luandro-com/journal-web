@@ -56,7 +56,7 @@ export default class ArticleForm extends Component {
 
   render() {
     const { input, file } = this.state
-    const { error, onSubmit } = this.props
+    const { error, onSubmit, publish, initialData } = this.props
     return (
       <form autoComplete="off" onSubmit={e => {
         e.preventDefault()
@@ -90,10 +90,32 @@ export default class ArticleForm extends Component {
           <Upload handleUpload={this.handleUpload} accept="application/pdf" />
         </div>
         <hr />
-        <button size="small" color="primary" type="submit">
-          Submeter
-        </button>
+        <div className='action'>
+          <button type="submit">
+            Salvar
+          </button>
+          <button onClick={(e) => {
+            console.log(e)
+            e.preventDefault()
+            publish({ variables: { articleId: initialData.id }})
+              .then((res) => console.log('RES', res))
+              .catch(err => console.log('err', err))
+            }}
+            disabled={!initialData || initialData.published}
+          >
+            {(!initialData || initialData.published) ? 'Publicado' : 'Publicar'}
+          </button>
+        </div>
         {error && <span>Erro!</span>}
+        <style jsx>{`
+          .action {
+            display: flex;
+            flex-flow: row no-wrap;
+          }
+          button {
+            margin: 0 5px;
+          }
+        `}</style>
       </form>
     )
   }

@@ -1,7 +1,7 @@
 import Router from 'next/router'
 import colors from '../lib/colors'
 
-const Button = ({ children, to }) => (
+const Button = ({ children, to, color }) => (
   <span>
      <button
       className=".btn"
@@ -18,7 +18,7 @@ const Button = ({ children, to }) => (
       button, .btn{
         color: white;
         text-decoration: none;
-        background-color: ${colors.color5};  /* change button color here */
+        background-color: ${color ? colors[color] : colors.color5};  /* change button color here */
         -moz-border-radius: 2px;
         -webkit-border-radius: 2px;
         border-radius: 2px;

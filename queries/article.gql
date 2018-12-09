@@ -30,6 +30,7 @@ query($articleId: ID!) {
     payment {
       id
       status
+      url
     }
   }
 }

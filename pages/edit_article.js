@@ -9,6 +9,7 @@ import Loading from '../components/Loading'
 import ARTICLE from '../queries/article.gql'
 import CREATE_ARTICLE from '../queries/articleCreate.gql'
 import UPDATE_ARTICLE from '../queries/articleUpdate.gql'
+import PUBLISH_ARTICLE from '../queries/articlePublish.gql'
 
 
 const Base = ({ children }) => (
@@ -67,11 +68,16 @@ class EditArticle extends Component {
               {({ loading: loadingArticle, error: errorArticle, data: dataArticle, client }) => (
                 <Mutation mutation={UPDATE_ARTICLE}>
                   {(updateArticle, { error: errorUpdate, client: clientUpdate }) => (
-                    <ArticleForm
-                      error={errorUpdate}
-                      onSubmit={input => this.onSubmitUpdate(input, updateArticle, Router.router.query.id, clientUpdate)}
-                      initialData={loadingArticle ? null : (errorArticle ? null : dataArticle.article)}
-                    />
+                     <Mutation mutation={PUBLISH_ARTICLE}>
+                      {(publishArticle, { error: errorPublish, client: clientPublish }) => (
+                        <ArticleForm
+                          error={errorUpdate || errorPublish}
+                          publish={publishArticle}
+                          onSubmit={input => this.onSubmitUpdate(input, updateArticle, Router.router.query.id, clientUpdate)}
+                          initialData={loadingArticle ? null : (errorArticle ? null : dataArticle.article)}
+                        />
+                      )}
+                    </Mutation>
                   )}
                 </Mutation>
               )}

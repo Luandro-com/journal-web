@@ -14,7 +14,7 @@ class Home extends Component {
       <App>
         <Query query={ISSUES}>
           {({ data, loading, error }) => {
-            const issues = loading ? [] : data.issues
+            const issues = loading ? [] : (error ? [] : data.issues)
             return (
               <div>
                 <Banner issues={issues.filter(e => (e.published && e.publishedCall) )} />
@@ -24,7 +24,7 @@ class Home extends Component {
         </Query>
         <Query query={OPEN_CALLS}>
           {({ data, loading, error }) => {
-            const openCalls = loading ? [] : data.openCalls
+            const openCalls = loading ? [] : (error ? [] : data.openCalls)
             return (
               <div>
                 <Calls issues={openCalls} />

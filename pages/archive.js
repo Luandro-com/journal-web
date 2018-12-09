@@ -15,7 +15,6 @@ class Archive extends Component {
               if (loading) return <Loading />
               if (error) return <h2>error</h2>
               if (data) {
-                console.log(data)
                 return <div className="wrapper">
                   {data.issues.map(issue => (
                     <div key={issue.id} className="container">

@@ -24,9 +24,7 @@ export default ({ children }) => (
       return (
         <Query query={CONTENT}>
           {({ loading: loadingContent, error: errorContent, data: dataContent }) => {
-            let contentData = dataContent.content
-            if (loadingContent) { contentData = 'loading'}
-            if (errorContent) { contentData = 'error' }
+            const contentData = loadingContent ? 'loading' : (errorContent ? 'error' : dataContent.content)
             return (
               <main>
                 <Header user={userData} content={contentData} />
@@ -69,6 +67,9 @@ export default ({ children }) => (
                   }
                   button:focus {
                     outline: none;
+                  }
+                  button:disabled {
+                    background-color: gray;
                   }
                   .footer {
                     padding-top: 80px;

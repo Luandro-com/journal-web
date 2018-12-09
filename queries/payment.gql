@@ -1,3 +1,7 @@
-mutation {
-  payment
+mutation($input: PaymentInput!) {
+  payment(input: $input) {
+    id
+    status
+    url
+  }
 }

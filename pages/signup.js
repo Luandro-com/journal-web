@@ -1,15 +1,16 @@
 import React, { Component } from 'react'
 import Router from 'next/router'
 import { Mutation } from "react-apollo"
-import LOGIN from '../queries/login.gql'
+import SIGNUP from '../queries/signup.gql'
 import { setToken, checkToken } from '../lib/auth'
 import App, { AppData } from '../components/App'
 
-class Login extends Component {
+class Signup extends Component {
   static contextType = AppData 
   state = {
     email: 'reader@example.com',
-    password: 'nooneknows'
+    password: 'nooneknows',
+    password2: 'nooneknows'
   }
 
   handleChange = name => event => {
@@ -19,7 +20,7 @@ class Login extends Component {
   }
 
   render() {
-    const { email, password } = this.state
+    const { email, password, password2 } = this.state
     return (
       <App>
         <AppData.Consumer>
@@ -29,17 +30,17 @@ class Login extends Component {
               return <h3>Redirecting...</h3>
             }
             return (
-              <Mutation mutation={LOGIN}>
-                {(login, { error: errorLogin, client: clientLogin }) => (
+              <Mutation mutation={SIGNUP}>
+                {(signup, { error: errorSignup, client: clientSignup }) => (
                   <form autoComplete="off" onSubmit={async (e) => {
                     e.preventDefault()
-                    const res = await login({ variables: { email, password }})
-                    if (res && res.data.login.token) {
-                      setToken(res.data.login.token)
-                      clientLogin.writeData({ data: {
+                    const res = await signup({ variables: { email, password }})
+                    if (res && res.data.signup.token) {
+                      setToken(res.data.signup.token)
+                      clientSignup.writeData({ data: {
                         user: {
                           __typename: 'user',
-                        ...res.data.login.user,
+                        ...res.data.signup.user,
                         }
                       }})
                       Router.push('/')
@@ -60,22 +61,19 @@ class Login extends Component {
                       onChange={this.handleChange('password')}
                       margin="normal"
                     />
+                    <input
+                      id="standard-password-input2"
+                      label="Password"
+                      type="password"
+                      value={password2}
+                      onChange={this.handleChange('password2')}
+                      margin="normal"
+                    />
                     <hr />
                     <button size="small" color="primary" type="submit">
                       Entrar
                     </button>
-                    {errorLogin && <h6>Erro!</h6>}
-                    <button size="small" color="primary" onClick={e => {
-                      e.preventDefault()
-                      Router.push('/signup')
-                    }}>
-                    Cadastrar
-                  </button>
-                  <style jsx>{`
-                    button {
-                      margin: 5px 0;
-                    }
-                  `}</style>
+                    {errorSignup && <h6>Erro!</h6>}
                   </form>
                 )}
               </Mutation>
@@ -88,5 +86,5 @@ class Login extends Component {
 
 }
 
-export default (Login)
+export default (Signup)
 

@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
-import Link from 'next/link'
 import { Query } from "react-apollo"
-import { setToken, checkToken } from '../lib/auth'
-import App, { AppData } from '../components/App'
+import App from '../components/App'
 import Button from '../components/Button'
 import Loading from '../components/Loading'
 import OPEN_CALLS from '../queries/openCalls.gql'
@@ -34,9 +32,17 @@ class Submit extends Component {
                     <div className="articlesContainer">
                       <h2>Artigos submetidos</h2>
                       {dataUserArticles && dataUserArticles.user && dataUserArticles.user.articles.map(article => (
-                        <Link key={article.id} href={{ pathname: '/edit_article', query: { id: article.id } }}>
-                          <ol>{article.title}</ol>
-                        </Link>
+                        <div key={article.id} className="articleItem">
+                          <h4>{article.title}</h4>
+                          <div className="buttons">
+                            <Button to={`/edit_article?id=${article.id}`}>
+                              Editar
+                            </Button>
+                            <Button to={`/payment?id=${article.id}`} color={1}>
+                              Pagar
+                            </Button>
+                          </div>
+                        </div>
                       ))}
                     </div>
                   )
@@ -51,8 +57,21 @@ class Submit extends Component {
             max-width: 650px;
           }
           .callItem {
+            margin: 5px 0;
             background: rgba(0,0,0,0.1);
             padding: 20px 25px;
+          }
+          .articleItem {
+            margin: 5px 0;
+            display: flex;
+            flex-flow: row no-wrap;
+            align-items: center;
+            justify-content: space-around;
+            background: rgba(0,0,0,0.1);
+            padding: 15px 5px;
+          }
+          .buttons > * {
+            margin: 0 5px;
           }
         `}</style>
       </App>

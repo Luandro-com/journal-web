@@ -1,12 +1,11 @@
 {
-  "name": "periodico-journal",
+  "name": "journal",
   "version": "0.0.1",
   "scripts": {
     "dev": "node server.js",
     "build": "next build",
     "build:analyze": "BUNDLE_ANALYZE=both yarn build",
-    "start": "next start -p 3001",
-    "install-start": "npm install && npm start"
+    "start": "NODE_ENV=production next start -p 3001"
   },
   "dependencies": {
     "@zeit/next-bundle-analyzer": "^0.1.2",

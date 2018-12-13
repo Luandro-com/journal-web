@@ -29,11 +29,11 @@ const Header = ({ router: { pathname }, user, content }) => (
           <Link prefetch href='/'>
             <a className={pathname === '/' ? 'is-active' : ''}>Capa</a>
           </Link>
-          <Link prefetch href='/archive'>
-            <a className={pathname === '/archive' ? 'is-active' : ''}>Edições</a>
-          </Link>
           <Link prefetch href='/about'>
             <a className={pathname === '/about' ? 'is-active' : ''}>Sobre</a>
+          </Link>
+          <Link prefetch href='/archive'>
+            <a className={pathname === '/archive' ? 'is-active' : ''}>Edições</a>
           </Link>
           <Link prefetch href='/submit'>
             <a className={pathname === '/submit' ? 'is-active' : ''}>Submissões</a>

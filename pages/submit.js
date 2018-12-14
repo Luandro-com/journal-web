@@ -13,15 +13,6 @@ class Submit extends Component {
         <Query query={OPEN_CALLS}>
           {({ loading: loadingOpenCalls, error: errorOpenCalls, data: dataOpenCalls, client }) => (
             <div className="wrapper">
-              <h2>Chamadas abertas</h2>
-              {(dataOpenCalls && dataOpenCalls.openCalls) && dataOpenCalls.openCalls.map(call => (
-                <div key={call.id} className="callItem">
-                  <h4>{call.title}</h4>
-                  <Button to={`/edit_article?issue=${call.id}`}>
-                    Submeter artigo
-                  </Button>
-                </div>
-              ))}
               <Query query={USER_ARTICLES}>
                 {({ loading: loadingUserArticles, error: errorUserArticles, data: dataUserArticles, client }) => {
                   if (loadingUserArticles) return <Loading />
@@ -30,6 +21,15 @@ class Submit extends Component {
                   }
                   return (
                     <div className="articlesContainer">
+                      <h2>Chamadas abertas</h2>
+                        {(dataOpenCalls && dataOpenCalls.openCalls) && dataOpenCalls.openCalls.map(call => (
+                          <div key={call.id} className="callItem">
+                            <h4>{call.title}</h4>
+                            <Button to={`/edit_article?issue=${call.id}`}>
+                              Submeter artigo
+                            </Button>
+                          </div>
+                        ))}
                       <h2>Artigos submetidos</h2>
                       {dataUserArticles && dataUserArticles.user && dataUserArticles.user.articles.map(article => (
                         <div key={article.id} className="articleItem">

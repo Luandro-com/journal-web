@@ -49,8 +49,8 @@ class EditArticle extends Component {
     }
   }
 
-  onSubmitUpdate = async (input, updateArticle, articleId, client) => {
-    const res = await updateArticle({ variables: { input, articleId }})
+  onSubmitUpdate = async (input, updateArticle, articleId, fileId, client) => {
+    const res = await updateArticle({ variables: { input, articleId, fileId }})
     if (res && res.data.updateArticle) {
       client.writeData({ data: {
         ...res.data.updateArticle
@@ -73,7 +73,7 @@ class EditArticle extends Component {
                         <ArticleForm
                           error={errorUpdate || errorPublish}
                           publish={publishArticle}
-                          onSubmit={input => this.onSubmitUpdate(input, updateArticle, Router.router.query.id, clientUpdate)}
+                          onSubmit={(input, fileId) => this.onSubmitUpdate(input, updateArticle, Router.router.query.id, fileId, clientUpdate)}
                           initialData={loadingArticle ? null : (errorArticle ? null : dataArticle.article)}
                         />
                       )}

@@ -18,6 +18,7 @@ export default class ArticleForm extends Component {
   }
 
   handleUpload = file => {
+    console.log('GOT UPLOAD', file)
     this.setState({
       file
     })
@@ -60,7 +61,7 @@ export default class ArticleForm extends Component {
     return (
       <form autoComplete="off" onSubmit={e => {
         e.preventDefault()
-        onSubmit(input)
+        onSubmit(input, file ? file.id : null)
       }}>
         <Input
           label="Título"

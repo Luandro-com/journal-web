@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Link from 'next/link'
 import { Query } from "react-apollo"
 import App from '../components/App'
 import Button from '../components/Button'
@@ -32,17 +33,19 @@ class Submit extends Component {
                         ))}
                       <h2>Artigos submetidos</h2>
                       {dataUserArticles && dataUserArticles.user && dataUserArticles.user.articles.map(article => (
-                        <div key={article.id} className="articleItem">
-                          <h4>{article.title}</h4>
-                          <div className="buttons">
-                            <Button to={`/edit_article?id=${article.id}`}>
-                              Editar
-                            </Button>
-                            <Button to={`/payment?id=${article.id}`} color={1}>
-                              Pagar
-                            </Button>
+                        <Link key={article.id} href={`/article?id=${article.id}`}>
+                          <div className="articleItem">
+                            <h4>{article.title}</h4>
+                            <div className="buttons">
+                              <Button to={`/edit_article?id=${article.id}`}>
+                                Editar
+                              </Button>
+                              <Button to={`/payment?id=${article.id}`} color={1}>
+                                Pagar
+                              </Button>
+                            </div>
                           </div>
-                        </div>
+                        </Link>
                       ))}
                     </div>
                   )

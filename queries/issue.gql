@@ -3,5 +3,14 @@ query($issueKey: String!) {
     id
     title
     body
+    volume
+    selectedArticles {
+      id
+      title
+      file {
+        url
+        id
+      }
+    }
   }
 }

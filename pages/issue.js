@@ -23,8 +23,17 @@ class Issue extends Component {
                     <h1>{title}</h1>
                     <div dangerouslySetInnerHTML={{__html: body }} />
                     {selectedArticles.map(article => <div key={article.id}>
-                      <Link href={`/pdf?url=${article.file.url}`}><a>{article.title}</a></Link>
-                      <a href={article.file.url}>📎</a>
+                      {!article.file &&
+                        <div>
+                          Artigo sem PDF...
+                        </div>
+                      }
+                      {article.file &&
+                        <div>
+                          <Link href={`/pdf?url=${article.file.url}`}><a>{article.title}</a></Link>
+                          <a href={article.file.url}>📎</a>
+                        </div>
+                      }
                     </div>)}
                   </div>
                 )

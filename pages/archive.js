@@ -38,6 +38,9 @@ class Archive extends Component {
                       display: flex;
                     }
                     .imageContainer {
+                      background-size: cover;
+                      background-repeat: no-repeat;
+                      background-position: center;
                       width: 150px;
                       height: 250px;
                     }

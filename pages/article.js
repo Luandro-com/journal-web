@@ -27,7 +27,7 @@ class Article extends Component {
                       <p>{shortDescription}</p>
                       <h3>Resumo</h3>
                       <p>{resume}</p>
-                      <Link href={`/pdf?url=${file.url}`}><a>ler online</a></Link>
+                      {file && <Link href={`/pdf?url=${file.url}`}><a>ler online</a></Link>}
                     </div>
                   )
                 }
